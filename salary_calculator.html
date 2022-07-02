@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Salary</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+
+    <nav class="navbar bg-light" style="margin-bottom: 50px;">
+        <div class="container-fluid" style="text-align: center; height: 57px; margin: auto; font-size: 33px; display: inline; background: #7062e0;">
+          <span class="navbar-brand mb-0 h1" style="color: white; font-weight: 700; font-size: 30px;">Salary Calculator</span>
+        </div>
+      </nav>
+
+    <div class="container">
+
+
+        <!-- <h1 style="text-align: center; margin: 55px 0px 100px 0px;">Salary Calculator
+            <hr>
+        </h1> -->
+
+        <div class="row col-5 col-5 col-5">
+            <form action="/" id="calculation">
+
+                <div class="input-group flex-nowrap mt-3">
+                    <span class="input-group-text" id="addon-wrapping">Tithes Percentage</span>
+                    <input type="number" name="tithes_percentage" class="form-control" placeholder="0" max="100">
+                    <span class="input-group-text" id="addon-wrapping">%</span>
+                </div>
+
+
+                <div class="input-group flex-nowrap mt-3">
+                    <span class="input-group-text" id="addon-wrapping">Salary</span>
+                    <input type="number" name="salary" class="form-control" placeholder="0" required>
+                    <span class="input-group-text" id="addon-wrapping">EGP</span>
+                </div>
+
+                <div class="input-group flex-nowrap mt-3">
+                    <span class="input-group-text" id="addon-wrapping">Rent</span>
+                    <input type="number" name="rent" class="form-control" placeholder="0">
+                    <span class="input-group-text" id="addon-wrapping">EGP</span>
+                </div>
+
+                <div class="input-group flex-nowrap mt-3">
+                    <span class="input-group-text" id="addon-wrapping">Transportation</span>
+                    <input type="number" name="transportation" class="form-control" placeholder="0">
+                    <span class="input-group-text" id="addon-wrapping">EGP</span>
+                </div>
+
+                <div class="input-group flex-nowrap mt-3">
+                    <span class="input-group-text" id="addon-wrapping">Bills</span>
+                    <input type="number" name="bills" class="form-control" placeholder="0">
+                    <span class="input-group-text" id="addon-wrapping">EGP</span>
+                </div>
+
+                <div class="input-group flex-nowrap mt-3">
+                    <span class="input-group-text" id="addon-wrapping">Enjoyment</span>
+                    <input type="number" name="enjoyment" class="form-control" placeholder="0">
+                    <span class="input-group-text" id="addon-wrapping">EGP</span>
+                </div>
+
+                <div class="input-group flex-nowrap mt-3">
+                    <span class="input-group-text" id="addon-wrapping">Additional Expenses</span>
+                    <input type="number" name="additional_expenses" class="form-control" placeholder="0">
+                    <span class="input-group-text" id="addon-wrapping">EGP</span>
+                </div>
+
+                <button type="submit" id="calculate_submit" class="btn mt-4" style="
+                    --bs-btn-padding-y: 0.25rem;
+                    --bs-btn-padding-x: 3rem;
+                    --bs-btn-font-size: 1.5rem;
+                    background-color: #6528e0;
+                    color: white;
+                    font-weight: 500;">Calculate</button>
+
+                <button type="" id="calculate_submit" class="btn mt-4" style="
+                    --bs-btn-padding-y: 0.25rem;
+                    --bs-btn-padding-x: 3rem;
+                    --bs-btn-font-size: 1.5rem;
+                    background-color: #606060;
+                    color: white;
+                    font-weight: 500; margin-left: 153px;" onclick="reloadPage()">Clear</button>
+
+            </form>
+
+        </div>
+        <hr>
+
+        <div class="mt-5" style="width: 400px;">
+
+            <table class="table table-striped table-hover table-bordered">
+                <!-- <thead>
+                <tr>
+                    <th scope="col">cols</th>
+                    <th scope="col">values</th>
+
+                </tr>
+            </thead> -->
+                <tbody>
+                    <tr id="table-body"></tr>
+                </tbody>
+            </table>
+
+        </div>
+
+
+        <div style="margin-top: 100px;"></div>
+
+    </div>
+
+    <script>
+        function reloadPage () {
+            location.reload()
+        }
+    </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+        crossorigin="anonymous"></script>
+
+    <script>
+
+        // location.reload();
+        const handleSubmit = (e) => {
+            e.preventDefault();
+            var final_data = {}
+            let data = [...e.currentTarget.elements]
+
+            for (element of data) {
+                if (element) {
+                    final_data[element.name] = element.value
+                }
+            }
+
+            res = calculate_form(final_data)
+            console.log("res->>>", res)
+
+
+            var root = document.getElementById('table-body');
+            for (const [key, value] of Object.entries(res)) {
+                row = capitalize(key.replace(/_/g, " "))
+
+
+                amount = value.toString().includes("%") || (value.toString() == "Yes" || value.toString() == "No") ? value : value.toString() + " EGP"
+
+
+                root.insertAdjacentHTML('beforebegin', `<tr><td>${row}</td><td>${amount}</td></tr>`)
+            }
+
+
+        };
+
+        document.querySelector("form").addEventListener("submit", handleSubmit);
+
+
+        function capitalize(sentence) {
+            const words = sentence.split(" ");
+            for (let i = 0; i < words.length; i++) {
+                words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+            }
+            return words.join(" ")
+        }
+
+        function calculate_form(data) {
+
+            console.log("data->> ", data)
+
+            var salary = parseFloat(data.salary)
+            var rent = data.rent ? parseFloat(data.rent): 0
+            var enjoyment = data.enjoyment ? parseFloat(data.enjoyment): 0
+            var transportation = data.transportation ? parseFloat(data.transportation): 0
+            var bills = data.bills ? parseFloat(data.bills): 0
+            var tithes_percentage = data.tithes_percentage ? parseFloat(data.tithes_percentage): 0
+            var additional_expenses = data.additional_expenses ? parseFloat(data.additional_expenses): 0
+
+            console.log("additional_expenses->> ", additional_expenses)
+
+            tithes = salary * tithes_percentage / 100
+            results = {}
+
+            results['base_salary'] = salary
+            results['tithes'] = tithes
+            results['salary'] = salary - tithes
+
+            results['investment_percentage'] = 0.50
+            results['expenses_percentage'] = 0.25
+            results['enjoyment_percentage'] = 0.25
+
+            results['investment_amount_limit'] = results['salary'] * results['investment_percentage']
+            results['expenses_amount_limit'] = results['salary'] * results['expenses_percentage']
+            results['enjoyment_amount_limit'] = results['salary'] * results['enjoyment_percentage']
+
+            results['rent'] = rent
+            results['bills'] = bills
+            results['transportation'] = transportation
+            results['additional_expenses'] = additional_expenses
+            results['enjoyment'] = enjoyment
+
+            results['total_expenses'] = rent + bills + transportation + additional_expenses
+            results['total_enjoyment'] = enjoyment
+
+            results['bank_withdrawal'] = rent + enjoyment + tithes
+            results['deducted_amount'] = tithes + rent + enjoyment + bills + transportation
+            results['saving_amount'] = results['salary'] - (results['total_expenses'] + results['total_enjoyment'])
+
+            results['current_tithes_percentage'] = tithes_percentage.toString() + "%"
+            results['current_expenses_percentage'] = parseFloat(((results['total_expenses'] / results['salary']) * 100).toFixed(1)).toString() + "%"
+            results['current_enjoyment_percentage'] = parseFloat(((results['total_enjoyment'] / results['salary']) * 100).toFixed(1)).toString() + "%"
+            //results['current_rent_percentage'] = parseFloat((results['rent'] / results['salary']) * 100)
+            results['current_saving_percentage'] = parseFloat(((results['saving_amount'] / results['salary']) * 100).toFixed(1)).toString() + "%"
+
+            results['investment_percentage'] = "0.50%"
+            results['expenses_percentage'] = "0.25%"
+            results['enjoyment_percentage'] = "0.25%"
+
+            results['investment_warning'] = results['saving_amount'] < results['investment_amount_limit'] ? "Yes" : "No"
+            results['expenses_warning'] = results['total_expenses'] > results['expenses_amount_limit'] ? "Yes" : "No"
+            results['enjoyment_warning'] = results['enjoyment'] > results['enjoyment_amount_limit'] ? "Yes" : "No"
+
+            return results
+
+        }
+
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>
