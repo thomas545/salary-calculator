@@ -28,12 +28,12 @@
 
     <div class="container">
 
-        <div class="row col-5 col-5 col-5">
+        <div class="row col-9 col-9 col-9">
             <form action="/" id="calculation">
 
                 <div class="input-group flex-nowrap mt-3">
-                    <span class="input-group-text" id="addon-wrapping">Tithes Percentage</span>
-                    <input type="number" name="tithes_percentage" class="form-control" placeholder="0" max="100">
+                    <span class="input-group-text" id="addon-wrapping">charity Percentage</span>
+                    <input type="number" name="charity_percentage" class="form-control" placeholder="0" max="100" value="10">
                     <span class="input-group-text" id="addon-wrapping">%</span>
                 </div>
 
@@ -157,8 +157,12 @@
 
                 amount = value.toString().includes("%") || (value.toString() == "Yes" || value.toString() == "No") ? value : value.toString() + " EGP"
 
-
-                root.insertAdjacentHTML('beforebegin', `<tr><td>${row}</td><td>${amount}</td></tr>`)
+                if (row == ""){
+                    root.insertAdjacentHTML('beforebegin', `<tr><td>${row}</td><td>${amount}</td></tr>`);
+                }
+                else {
+                    root.insertAdjacentHTML('beforebegin', `<tr><td>${row}</td><td>${amount}</td></tr>`);
+                }
             }
 
 
@@ -184,17 +188,17 @@
             var enjoyment = data.enjoyment ? parseFloat(data.enjoyment): 0
             var transportation = data.transportation ? parseFloat(data.transportation): 0
             var bills = data.bills ? parseFloat(data.bills): 0
-            var tithes_percentage = data.tithes_percentage ? parseFloat(data.tithes_percentage): 0
+            var charity_percentage = data.charity_percentage ? parseFloat(data.charity_percentage): 0
             var additional_expenses = data.additional_expenses ? parseFloat(data.additional_expenses): 0
 
             console.log("additional_expenses->> ", additional_expenses)
 
-            tithes = salary * tithes_percentage / 100
+            charity = salary * charity_percentage / 100
             results = {}
 
             results['base_salary'] = salary
-            results['tithes'] = tithes
-            results['salary'] = salary - tithes
+            results['charity'] = charity
+            results['salary'] = salary - charity
 
             results['investment_percentage'] = 0.50
             results['expenses_percentage'] = 0.25
@@ -213,11 +217,11 @@
             results['total_expenses'] = rent + bills + transportation + additional_expenses
             results['total_enjoyment'] = enjoyment
 
-            results['bank_withdrawal'] = rent + enjoyment + tithes
-            results['deducted_amount'] = tithes + rent + enjoyment + bills + transportation
+            results['bank_withdrawal'] = rent + enjoyment
+            results['deducted_amount'] = charity + rent + enjoyment + bills + transportation
             results['saving_amount'] = results['salary'] - (results['total_expenses'] + results['total_enjoyment'])
 
-            results['current_tithes_percentage'] = tithes_percentage.toString() + "%"
+            results['current_charity_percentage'] = charity_percentage.toString() + "%"
             results['current_expenses_percentage'] = parseFloat(((results['total_expenses'] / results['salary']) * 100).toFixed(1)).toString() + "%"
             results['current_enjoyment_percentage'] = parseFloat(((results['total_enjoyment'] / results['salary']) * 100).toFixed(1)).toString() + "%"
             //results['current_rent_percentage'] = parseFloat((results['rent'] / results['salary']) * 100)
